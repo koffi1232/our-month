@@ -113,29 +113,33 @@
     <a style='grid-area:d31' href="31.htm">31</a>
   </div>
 <script>
-const startDate = new Date(2026, 9, 17); // 17 октября 2026
+const startDate = new Date(2026, 9, 17);
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-document.querySelectorAll('.calendar a').forEach((el, i) => {
-  if (!el.getAttribute('href')) return; // пропускаем заголовок и уже заблокированные
-  if (el.closest('.calendar > a') && i === 0 && !el.href.includes('.htm')) return;
+document.querySelectorAll('.calendar a').forEach((el) => {
+  const txt = el.textContent.trim();
+  if (!/^\d+$/.test(txt)) return;
 
-  // Считаем номер дня от 1: если первая ссылка — заголовок, сдвигаем
+  const dayNum = parseInt(txt, 10);
   const openDate = new Date(startDate);
-  const dayIndex = i; // для нас i=0 это день 1, т.к. заголовок без href пропущен
-  openDate.setDate(startDate.getDate() + dayIndex);
+  openDate.setDate(startDate.getDate() + (dayNum - 1));
 
-  if (today < openDate) {
-    el.dataset.locked = 'true';
+  if (today >= openDate) {
+    el.setAttribute('href', String(dayNum).padStart(2, '0') + '.htm');
+    el.style.opacity = '1';
+    el.style.cursor = 'pointer';
+    el.removeAttribute('data-locked');
+    el.removeAttribute('title');
+  } else {
     el.removeAttribute('href');
+    el.dataset.locked = 'true';
     el.style.opacity = '0.4';
     el.style.cursor = 'not-allowed';
     el.title = 'Откроется ' + openDate.toLocaleDateString('ru-RU');
   }
 });
 
-// Блокируем клики по закрытым окошкам (обычный клик + Ctrl + правая кнопка)
 document.addEventListener('click', e => {
   const a = e.target.closest('.calendar a[data-locked]');
   if (a) {
