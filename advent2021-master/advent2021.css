@@ -1,0 +1,89 @@
+/* Minimal global CSS for Adventscalendar */
+
+html {
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  color-scheme: dark light;
+  --color: #111111;
+  --back: #eeeeee;
+}  
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color: #4a4a4a;
+    --back: #fff0f5;
+  }
+}
+
+body {
+  position: relative;
+  margin: 0 auto;
+  max-width: 800px;
+  color: var(--color);
+  background-color: var(--back);
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  background-color: red;
+  background-size: 2rem 2rem;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M12 12L36 36M36 12L12 36' stroke='white' stroke-width='12' stroke-linecap='round' /></svg>");
+  user-select: none;
+  cursor: pointer;
+}
+
+code {
+  background-color: #eeeeaa;
+  color: #222222;
+  padding: 0 0.2em;
+}
+pre > code {
+  display: block;
+  padding: 0.4em;
+}
+
+a, a:hover, a:visited {
+  color: currentColor;
+  text-decoration: underline;
+}
+
+.taglist > a {
+  display: inline-block;
+  height: 1.6em;
+  background: #203050;
+  text-align: center;
+  padding: 0.2em 0.6em;
+  position: relative;
+  margin-right: 1em;
+  text-decoration: none;
+  color: #fff;
+}
+
+.taglist > a::before {
+  content: "#";
+}
+
+.taglist > a::after {
+  content: "";
+  border-top: 0.8em solid transparent;
+  border-bottom: 0.8em solid transparent;
+  border-left: 0.8em solid #203050;
+  position: absolute;
+  right: -0.8em;
+  top: 0;
+}
