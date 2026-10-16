@@ -1,0 +1,14 @@
+body {
+  background: url("hearts.jpg") center/cover no-repeat;
+  color: #4a4a4a;
+  font-family: Georgia, serif;
+  padding: 40px;
+  min-height: 100vh;
+}
+h1 { text-align: center; color: #c48b9f; }
+.date { text-align: center; font-size: 1.4rem; color: #c48b9f; margin-bottom: 30px; }
+.entry { max-width: 600px; margin: 0 auto; }
+.time { font-weight: bold; color: #c48b9f; margin-top: 15px; }
+.note { margin: 5px 0 0 20px; }
+img { max-width: 90%; border-radius: 12px; margin: 20px auto; display: block; }
+a { color: #c48b9f; display: block; text-align: center; margin-top: 30px; }
